@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: qzhp
+  profiles:
+    active: dev
+
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
+    - classpath*:com/**/mapper/*.xml
+
+secure:
+  ignored:
+    urls:
+      - /swagger-ui.html
+      - /swagger-resources/**
+      - /swagger/**
+      - /**/v2/api-docs
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /**/*.ico
+      - /webjars/springfox-swagger-ui/**
+      - /actuator/**
+      - /druid/**
+      - /admin/login
+      - /admin/register
+      - /admin/info
+      - /admin/logout

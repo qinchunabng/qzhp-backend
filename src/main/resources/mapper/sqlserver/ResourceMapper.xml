@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qzhp.dao.ResourceDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.qzhp.entity.po.Resource">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="url" property="url" />
+        <result column="description" property="description" />
+        <result column="create_time" property="createTime" />
+        <result column="modify_time" property="modifyTime" />
+        <result column="del_flag" property="delFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, url, description, create_time, modify_time, del_flag
+    </sql>
+
+    <select id="getListByUserId" resultMap="BaseResultMap">
+        select
+            r.id,
+            r.name,
+            r.url,
+            r.description,
+            r.create_time,
+            r.modify_time,
+            r.del_flag
+        from resource r
+                 inner join role_resource_relation rrr on rrr.resource_id = r.id
+                 inner join user_role_relation urr on urr.role_id = rrr.role_id
+        where urr.user_id = #{userId}
+          and r.del_flag=0
+    </select>
+
+</mapper>

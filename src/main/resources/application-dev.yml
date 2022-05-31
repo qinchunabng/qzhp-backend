@@ -1,0 +1,34 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://qzhp.db.svr;DatabaseName=qzhp;integratedSecurity=false;
+    username: sa
+    password: ENC(Y6hljk3c6ISfHRfkUa8WfFmQZ428DxYu)
+    # 连接池配置：
+    druid:
+      initial-size: 2 # 初始化时建立物理连接的个数。默认0
+      max-active: 10 # 最大连接池数量，默认8
+      min-idle: 1 # 最小连接池数量
+      max-wait: 2000 # 获取连接时最大等待时间，单位毫秒。
+      pool-prepared-statements: false # 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
+      max-pool-prepared-statement-per-connection-size: -1 # 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
+
+
+# 自定义jwt key
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: ENC(F8B0kvTb9YgAW4K0uSJ+nHOWY5pV4Rf6) #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24)
+  tokenHead: Bearer  #JWT负载中拿到开头
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: "classpath*:/mapper/**/*.xml"
+
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
