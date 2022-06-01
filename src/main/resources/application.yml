@@ -24,6 +24,6 @@ secure:
       - /actuator/**
       - /druid/**
       - /admin/login
-      - /admin/register
+#      - /admin/register
       - /admin/info
       - /admin/logout

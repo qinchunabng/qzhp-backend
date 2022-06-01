@@ -19,7 +19,7 @@ public class UserInfo implements Serializable {
     private Long id;
 
     @NotEmpty(message = "用户名不能为空", groups = { OperationGroup.Add.class, OperationGroup.Update.class })
-    @Length(min = 5, max = 20, message = "用户名长度必须大于等于5且小于等于20",groups = { OperationGroup.Add.class, OperationGroup.Update.class })
+    @Length(min = 4, max = 20, message = "用户名长度必须大于等于5且小于等于20",groups = { OperationGroup.Add.class, OperationGroup.Update.class })
     private String username;
 
     @NotEmpty(message = "密码不能为空", groups = { OperationGroup.Add.class, OperationGroup.Update.class })
